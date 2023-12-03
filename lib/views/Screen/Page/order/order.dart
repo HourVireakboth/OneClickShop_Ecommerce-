@@ -17,6 +17,7 @@ import 'package:oneclickshop/viewmodel/payment/makepayment_bloc.dart';
 import 'package:oneclickshop/views/Screen/Page/address/add_new_address.dart';
 import 'package:oneclickshop/views/Screen/Page/address/address.dart';
 import 'package:oneclickshop/views/Screen/Page/order/my_order.dart';
+import 'package:oneclickshop/views/Screen/Page/order/paymentsuccesfull.dart';
 import 'package:oneclickshop/views/Screen/authentication/No_Login/widget/button.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -46,6 +47,7 @@ class _OrderScreenState extends State<OrderScreen> {
 
   @override
   Widget build(BuildContext context) {
+    List<AddressModel> addlist = [];
     double Totalprice = 0;
     var size = MediaQuery.of(context).size;
     return Scaffold(
@@ -53,13 +55,13 @@ class _OrderScreenState extends State<OrderScreen> {
         listener: (context, state) {
           print("state Makepayment = $state");
           if (state is MakepaymentCompleted) {
-            BlocProvider.of<OrderBloc>(context)
-                .add(FetchOrderRecords(token: widget.token));
+            // BlocProvider.of<OrderBloc>(context)
+            //     .add(FetchOrderRecords(token: widget.token));
             Navigator.pushAndRemoveUntil(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => MyOrder(
-                          ischeck: true,
+                    builder: (context) => PaymentSuccessfull(
+                          token: widget.token,
                         )),
                 (route) => false);
             // List<String>? orderNo = listOrderNo?.map((i) => i.toString()).toList();
@@ -208,7 +210,6 @@ class _OrderScreenState extends State<OrderScreen> {
                                 },
                                 builder: (context, state) {
                                   if (state is AddressCompleted) {
-                                    List<AddressModel> addlist = [];
                                     addlist.clear();
                                     state.addresslist!.forEach(
                                       (element) {
@@ -656,10 +657,14 @@ class _OrderScreenState extends State<OrderScreen> {
                   child: GestureDetector(
                     onTap: () async {
                       print("Place Order");
-                      String payment;
-                      payment = Totalprice.toString();
-                      payment = payment.replaceAll(".", "");
-                      await initPaymentSheet("${payment}0", widget.token!);
+                      if (addlist.isEmpty){
+                        showAlertDialog(context);
+                      } else {
+                        String payment;
+                        payment = Totalprice.toString();
+                        payment = payment.replaceAll(".", "");
+                        await initPaymentSheet("${payment}0", widget.token!);
+                      }
                     },
                     child: Button(
                       raduis: 25,
@@ -737,5 +742,54 @@ class _OrderScreenState extends State<OrderScreen> {
   void setOrderNo(List<String> orderNo) async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
     prefs.setStringList("orderNo", orderNo);
+  }
+
+  showAlertDialog(BuildContext context) {
+    // set up the buttons
+
+    Widget continueButton = TextButton(
+      child: Text("Done",
+          style: TextStyle(
+              color: AppColor.textBlackColor,
+              fontSize: 18,
+              fontWeight: FontWeight.bold)),
+      onPressed: () {
+        Navigator.pop(context);
+      },
+    );
+
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      backgroundColor: AppColor.backgroudButtonColor,
+      title: const Row(
+        children: [
+          Icon(
+            Icons.location_city,
+            size: 40,
+          ),
+          SizedBox(
+            width: 10,
+          ),
+          Text(
+            "Address",
+            style: TextStyle(fontSize: 26, fontWeight: FontWeight.bold),
+          )
+        ],
+      ),
+      content: const Text(
+          "Please Select Address or Add new Address and make is Default! ,Before place Order.",
+          style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500)),
+      actions: [
+        continueButton,
+      ],
+    );
+
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 }

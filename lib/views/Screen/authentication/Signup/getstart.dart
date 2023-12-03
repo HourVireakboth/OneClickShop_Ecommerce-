@@ -28,7 +28,6 @@ class _GetStartState extends State<GetStart> {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         globalkey.currentState!.validate();
       });
-      
     }
     super.initState();
   }
@@ -117,6 +116,10 @@ class _GetStartState extends State<GetStart> {
                               }
                             },
                             onChanged: (value) {
+                              setState(() {
+                              widget.areadyexist = false;
+                                
+                              });
                               if (globalkey.currentState!.validate()) {
                                 globalkey.currentState!.save();
                               }

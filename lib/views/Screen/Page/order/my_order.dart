@@ -38,10 +38,14 @@ class _MyOrderState extends State<MyOrder> {
 
     //   }
     // });
+    if(widget.ischeck!){
+      
+    }else{
     print("test 99");
     print("token = ${widget.token}");
     BlocProvider.of<OrderBloc>(context)
         .add(FetchOrderRecords(token: widget.token));
+    }
     super.initState();
   }
 

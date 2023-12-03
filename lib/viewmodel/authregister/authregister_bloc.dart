@@ -1,7 +1,6 @@
 import 'package:bloc/bloc.dart';
 import 'package:equatable/equatable.dart';
 
-import 'package:oneclickshop/model/Users/response/registerresponsemodel.dart';
 
 import '../../model/Users/response/registerAlreadyexist.dart';
 import '../../repository/user/UserRepository.dart';

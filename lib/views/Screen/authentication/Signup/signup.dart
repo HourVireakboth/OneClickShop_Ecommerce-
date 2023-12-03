@@ -78,13 +78,29 @@ class _SignupScreenState extends State<SignupScreen> {
                   listener: (context, state) {
                 if (state is RegisterComplete) {
                   print("completed");
-                  BlocProvider.of<LoginBloc>(context)
-                      .add(LoginUser(phonenumber: phnumber.toString()));
+                   BlocProvider.of<LoginBloc>(context)
+                       .add(LoginUser(phonenumber: phnumber.toString()));
                 }
 
                 if (state is RegisterUnAuthorize) {
-                  if (state.registertaken!.username![0] ==
-                      "A user with that username already exists.") {
+                  //bool checked = true;
+                  String phoneNumber =state.registertaken!.phoneNumber!.isEmpty ? "" : state.registertaken!.phoneNumber![0];
+
+                  String name = state.registertaken!.username!.isEmpty ? "" : state.registertaken!.username![0];
+                  if (phoneNumber.toString().contains(
+                      'user with this phone number already exists.')) {
+                    print('phone number');
+                    // Navigator.pushAndRemoveUntil(
+                    //     context,
+                    //     MaterialPageRoute(
+                    //         builder: (context) => ActivateScreen()),
+                    //     (route) => false);
+                    BlocProvider.of<LoginBloc>(context)
+                       .add(LoginUser(phonenumber: phnumber.toString()));
+                    
+                  }else if (name
+                      .toString()
+                      .contains('A user with that username already exists.')) {
                     Navigator.pushAndRemoveUntil(
                         context,
                         MaterialPageRoute(
@@ -94,10 +110,7 @@ class _SignupScreenState extends State<SignupScreen> {
                                   email: state.gmail.toString(),
                                 )),
                         (route) => false);
-                  } else if (state.registertaken!.phoneNumber![0] ==
-                      "user with this phone number already exists.") {
-                    BlocProvider.of<LoginBloc>(context)
-                      .add(LoginUser(phonenumber: state.phonenumber.toString()));
+                    print('name');
                   }
                 }
               })
