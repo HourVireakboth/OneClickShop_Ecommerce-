@@ -22,11 +22,11 @@ PODS:
   - libphonenumber_plugin (0.0.1):
     - Flutter
     - PhoneNumberKit
-  - PhoneNumberKit (3.6.8):
-    - PhoneNumberKit/PhoneNumberKitCore (= 3.6.8)
-    - PhoneNumberKit/UIKit (= 3.6.8)
-  - PhoneNumberKit/PhoneNumberKitCore (3.6.8)
-  - PhoneNumberKit/UIKit (3.6.8):
+  - PhoneNumberKit (3.7.5):
+    - PhoneNumberKit/PhoneNumberKitCore (= 3.7.5)
+    - PhoneNumberKit/UIKit (= 3.7.5)
+  - PhoneNumberKit/PhoneNumberKitCore (3.7.5)
+  - PhoneNumberKit/UIKit (3.7.5):
     - PhoneNumberKit/PhoneNumberKitCore
   - shared_preferences_foundation (0.0.1):
     - Flutter
@@ -120,7 +120,7 @@ SPEC CHECKSUMS:
   GTMSessionFetcher: 3a63d75eecd6aa32c2fc79f578064e1214dfdec2
   image_picker_ios: 4a8aadfbb6dc30ad5141a2ce3832af9214a705b5
   libphonenumber_plugin: e8a7d64a6624a7c25f2c4ab0b7ead2a8e341e35e
-  PhoneNumberKit: 962cb725d664c7d4ac5f3e6f93e2de5f543f0d05
+  PhoneNumberKit: f3980e01b84615524dd496adee6a1b5ced87d3f4
   shared_preferences_foundation: 5b919d13b803cadd15ed2dc053125c68730e5126
   smart_auth: 4bedbc118723912d0e45a07e8ab34039c19e04f2
   Stripe: fcab417424a45d995aa1e62a39bc942233b61ba3
@@ -133,6 +133,6 @@ SPEC CHECKSUMS:
   StripePaymentsUI: 24a0349ae8c7e8c7402086703720fe06c52ddea0
   StripeUICore: ce85e040a22bf0335061d14973d37757528b3d2d
 
-PODFILE CHECKSUM: 978dd492a93a8ef4ec2dc2b3631de447af34068a
+PODFILE CHECKSUM: 0513d2edbf5c61c5321b27e2b4dcc02cc0cf0037
 
-COCOAPODS: 1.12.1
+COCOAPODS: 1.14.3

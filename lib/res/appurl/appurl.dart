@@ -1,5 +1,5 @@
 class ApiUrl {
-  static var main = "http://127.0.0.1:8000/";
+  static var main = "http://192.168.0.101:8000/";
   static var authlogin = "${main}api/v1/login";
   static var authregister = "${main}api/v1/signup";
   static var authverfiysms = "${main}api/v1/verify_otp";

@@ -1,3 +1,5 @@
+// ignore_for_file: must_be_immutable
+
 part of 'authregister_bloc.dart';
 
 abstract class AuthregisterState extends Equatable {}
@@ -22,7 +24,6 @@ class RegisterUnAuthorize extends AuthregisterState {
   List<Object?> get props => [];
 }
 
-// ignore: must_be_immutable
 class RegisterError extends AuthregisterState {
   var error;
   RegisterError({this.error});
