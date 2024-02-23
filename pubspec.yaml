@@ -32,7 +32,8 @@ dependencies:
     sdk: flutter
   pinput: ^3.0.1
   curved_navigation_bar: ^1.0.3
-  google_sign_in: ^6.1.5
+  google_sign_in: ^6.1.6
+  google_sign_in_ios: ^5.6.5
   country_list_pick: ^1.0.1+6
   card_swiper: ^3.0.1
   flutter_rating_bar: ^4.0.1
